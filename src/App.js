@@ -1,7 +1,11 @@
-
+import React from 'react';
+import  {  Route } from 'react-router-dom';
+import data from './data';
+import HomeScreen from './Screens/HomeScreen';
+import ProductScreen from './Screens/ProductScreen';
 import './App.css';
 
-import React from 'react';
+
 
 function App() {
 
@@ -41,98 +45,32 @@ function App() {
         </ul>
       </aside>
      
-      <main class ='main'>
+      <main className ='main'>
         <div className='content'>
+          <Route path='/product/:id' component={ProductScreen}/>
+          <Route path='/' exact={true} component={HomeScreen}/>
           <ul className='products'>
+            {
+              data.products.map(product => 
           <li>
             <div className='product'>
-              <img className ='product-image' src='/images/ankara.png' alt='product'/>
+              <img className ='product-image' src={product.image} alt='product'/>
               <div className='product-name'>
-                <a href='product.html'>Skirt and blouse</a>
+                <a href='product.html'>{product.name}</a>
               </div>
-              <div className='product-brand'>Ankara</div>
-              <div className='product-price'>$19.99</div>
+              <div className='product-brand'>{product.brand}</div>
+              <div className='product-size'>{product.size}</div>
+              <div className='product-price'>${product.price}</div>
             </div>
-          </li>
+          </li>)
+            }
           
-           <li>
-            <div className='product'>
-              <img className ='product-image' src='/images/ankara.png' alt='product'/>
-              <div className='product-name'>
-                <a href='product.html'>Skirt and blouse</a>
-              </div>
-              <div className='product-brand'>Ankara</div>
-              <div className='product-price'>$19.99</div>
-            </div>
-          </li>
-
-           <li>
-            <div className='product'>
-              <img className ='product-image' src='images/ankara.png' alt='product'/>
-              <div className='product-name'>
-                <a href='product.html'>Skirt and blouse</a>
-              </div>
-              <div className='product-brand'>Ankara</div>
-              <div className='product-price'>$19.99</div>
-            </div>
-          </li>
-
-           <li>
-            <div className='product'>
-              <img className ='product-image' src='/images/ankara.png' alt='product'/>
-              <div className='product-name'>
-                <a href='product.html'>Skirt and blouse</a>
-              </div>
-              <div className='product-brand'>Ankara</div>
-              <div className='product-price'>$19.99</div>
-            </div>
-          </li>
-           <li>
-            <div className='product'>
-              <img class ='product-image' src='/images/ankara.png' alt='product'/>
-              <div className='product-name'>
-                <a href='product.html'>Skirt and blouse</a>
-              </div>
-              <div className='product-brand'>Ankara</div>
-              <div className='product-price'>$19.99</div>
-            </div>
-          </li>
-           <li>
-            <div className='product'>
-              <img class ='product-image' src='/images/ankara.png' alt='product'/>
-              <div className='product-name'>
-                <a href='product.html'>Skirt and blouse</a>
-              </div>
-              <div className='product-brand'>Ankara</div>
-              <div className='product-price'>$19.99</div>
-            </div>
-          </li>
-           <li>
-            <div className='product'>
-              <img class ='product-image' src='/images/ankara.png' alt='product'/>
-              <div className='product-name'>
-                <a href='product.html'>Skirt and blouse</a>
-              </div>
-              <div className='product-brand'>Ankara</div>
-              <div className='product-price'>$19.99</div>
-            </div>
-          </li>
-           <li>
-            <div className='product'>
-              <img class ='product-image' src='/images/ankara.png' alt='product'/>
-              <div className='product-name'>
-                <a href='product.html'>Skirt and blouse</a>
-              </div>
-              <div className='product-brand'>Ankara</div>
-              <div className='product-price'>$19.99</div>
-            </div>
-          </li>
         </ul>
         </div>
         
         </main>
 
-    <footer class='footer'>All right reserved</footer>
+    <footer className='footer'>All right reserved</footer>
     </div>
   );
 }
