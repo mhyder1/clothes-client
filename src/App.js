@@ -1,5 +1,5 @@
 import React from 'react';
-import  {  Route } from 'react-router-dom';
+import  {  Route, Link } from 'react-router-dom';
 import data from './data';
 import HomeScreen from './Screens/HomeScreen';
 import ProductScreen from './Screens/ProductScreen';
@@ -26,7 +26,8 @@ function App() {
           </button>
         </div>
         <div className='header-links'>
-          <a href='index.html'>African Clothing</a>
+          {/* <a href='index.html'>African Clothing</a> */}
+          <Link to='/'>African Clothing</Link>
         </div>
         <div className='header-links'>
           <a href='cart.html'> Cart</a>
@@ -49,7 +50,7 @@ function App() {
         <div className='content'>
           <Route path='/product/:id' component={ProductScreen}/>
           <Route path='/' exact={true} component={HomeScreen}/>
-          <ul className='products'>
+          {/* <ul className='products'>
             {
               data.products.map(product => 
           <li>
@@ -65,7 +66,7 @@ function App() {
           </li>)
             }
           
-        </ul>
+        </ul> */}
         </div>
         
         </main>
