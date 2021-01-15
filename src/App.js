@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import  {  Route, Link } from 'react-router-dom';
 import data from './data';
 import HomeScreen from './Screens/HomeScreen';
@@ -7,10 +7,12 @@ import CartScreen from './Screens/CartScreen';
 import './App.css';
 import SigninScreen from './Screens/SigninScreen';
 import RegisterScreen from './Screens/RegisterScreen';
+import AppContext from './AppContext'
 
 
 
 function App() {
+  const [cart, setCart] = useState([])
 
   const openMenu = ()=> {
     document.querySelector('.sidebar').classList.add('open');
@@ -20,7 +22,18 @@ function App() {
   const closeMenu = ()=> {
     document.querySelector('.sidebar').classList.remove('open');
   };
+
+  const addToCart = (item)=>{
+    setCart([...cart, item])
+  }
+
+  const value = {
+    cart,
+    addToCart
+  }
+
   return (
+    <AppContext.Provider value ={value}>
     <div className='grid-container'>
       <header className='header'>
         <div className='brand'>
@@ -54,7 +67,7 @@ function App() {
           <Route path='/register' component={RegisterScreen}/>
           <Route path='/cart/:id?' component={CartScreen}/>
           <Route path="/category/:id" component={HomeScreen} />
-          <Route path='/' exact={true} component={HomeScreen}/>
+          <Route path='/' exact component={HomeScreen}/>
           
         </div>
         
@@ -62,6 +75,7 @@ function App() {
 
     <footer className='footer'>All right reserved</footer>
     </div>
+    </AppContext.Provider>
   );
 }
 

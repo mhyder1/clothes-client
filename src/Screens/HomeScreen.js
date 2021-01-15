@@ -3,10 +3,14 @@ import { Link } from 'react-router-dom';
 import data from '../data';
 
 function HomeScreen(props){
+  console.log(props)
+
+  const {id} = props.match.params
+  const products = data.products.filter(product=> product.category === id)
     return(
         <ul className='products'>
-        {
-          data.products.map(product => 
+        {products.length > 0 ? 
+         products.map(product => 
       <li>
         <div className='product'>
         <Link to={'/product/' + product.id}>
@@ -22,6 +26,8 @@ function HomeScreen(props){
           <div className='product-price'>${product.price}</div>
         </div>
       </li>)
+      : 
+      <h1>Product Not Available</h1>
         }
       
     </ul>

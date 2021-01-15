@@ -1,6 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
+
+import AppContext from '../AppContext'
 
 function CartScreen (props){
+    const context = useContext(AppContext)
+    console.log(context)
     const productId = props.match.params.id;
     return(
         <div className='cart'>
@@ -15,7 +19,12 @@ function CartScreen (props){
                         </div>
                     </li>
                     <div>
-                        Cart is empty
+                        {/* Cart is empty */}
+                    {
+                        context.cart.map(item=>(
+                            item.price
+                        ))
+                    }
                     </div>
                 </ul>
 
