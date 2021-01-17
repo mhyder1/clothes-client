@@ -6,10 +6,15 @@ function HomeScreen(props){
   console.log(props)
 
   const {id} = props.match.params
-  const products = data.products.filter(product=> product.category === id)
+  let products = data.products
+  if(id){
+     products = data.products.filter(product=> product.category === id)
+  }
+   
+  
     return(
         <ul className='products'>
-        {products.length > 0 ? 
+        {
          products.map(product => 
       <li>
         <div className='product'>
@@ -18,7 +23,6 @@ function HomeScreen(props){
         </Link>
           
           <div className='product-name'>
-            {/* <a href='product.html'>{product.name}</a> */}
           <Link to={'/product/' + product.id}>{product.name}</Link>
           </div>
           <div className='product-brand'>{product.brand}</div>
@@ -26,8 +30,7 @@ function HomeScreen(props){
           <div className='product-price'>${product.price}</div>
         </div>
       </li>)
-      : 
-      <h1>Product Not Available</h1>
+      
         }
       
     </ul>

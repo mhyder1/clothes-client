@@ -135,4 +135,23 @@ html{
     text-align: center;
   }
 
+  .cart-image{
+    height: 100px;
+    width: 100px;
+  }
+
+  .cart-list
+  {
+    text-align: center;
+  }
+
+  #cartTable{
+    margin: auto;
+    padding: 25px;
+    text-align: left;
+  }
+
+  #cartTable tr td{
+    margin-bottom: 100px;
+  }
   

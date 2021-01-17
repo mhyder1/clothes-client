@@ -45,7 +45,7 @@ function App() {
           <Link to='/'>African Clothing</Link>
         </div>
         <div className='header-links'>
-          <Link to='/cart'> Cart</Link>
+           <Link to='/cart'> Cart-{cart.length}</Link>
           <Link to='/signin'> Sign In </Link>
         </div>
       </header>
@@ -54,8 +54,8 @@ function App() {
         <button className='sidebar-close-button' onClick={closeMenu}>X</button>
         <ul className='categories'>
           <li><Link to='/category/Skirt and Blouse'>Skirt and Blouse</Link></li>
-          <li><Link to='/category/Blouse'>Gown</Link></li>
-          <li><Link to='/category/Gown'>Blouse</Link></li>
+          <li><Link to='/category/Gown'>Gown</Link></li>
+          <li><Link to='/category/Blouse'>Blouse</Link></li>
           <li><Link to='/category/Skirt'>Skirt</Link></li>
         </ul>
       </aside>

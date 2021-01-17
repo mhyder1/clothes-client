@@ -7,18 +7,25 @@ import AppContext from '../AppContext'
 function ProductScreen(props){
     const context = useContext(AppContext)
     const [quantity, setQuantity] = useState(1)
-    console.log(props.match.params.id)
     const product = data.products.find(x=> x.id === props.match.params.id );
+    //this.setQuantity.bind(this)
 
     const handleSubmit = (e)=> {
         e.preventDefault()
-        const item = { 
+       const item = { 
             name: product.name,
             size: product.size,
-            price: product.price,
-            quantity
+            image: product.image,
+            quantity: quantity,
+            id: product.id,
+            price: product.price * quantity,
+            
         }
         context.addToCart(item)
+    }
+
+    const setQty = (quantity) => {
+        setQuantity(quantity);
     }
     
     return(
@@ -57,13 +64,13 @@ function ProductScreen(props){
                     <form onSubmit={handleSubmit}>
                     <ul>
                         <li>
-                            Price:{product.price}
+                            Price:${product.price}
                         </li>
                         <li>
                             Status:{product.status}
                         </li>
                         <li>
-                            Qty: <select onChange={(e)=> setQuantity(e.target.value)}>
+                            Qty: <select onChange={(e)=> setQty(e.target.value)}>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
