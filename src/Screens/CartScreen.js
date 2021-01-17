@@ -88,7 +88,9 @@ function CartScreen (props){
                     <h3>
                         Subtotal : $ {total}
                     </h3>
-                    <button>Place Order</button>
+                    <Link to='/signin'>
+                        <button>Place Order</button>
+                    </Link>
                 </div>
 
             </div>
