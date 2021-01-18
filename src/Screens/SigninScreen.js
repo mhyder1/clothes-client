@@ -1,6 +1,6 @@
 import React from 'react';
-import {Route, Link } from 'react-router-dom';
-import RegisterScreen from './RegisterScreen';
+import { Link } from 'react-router-dom';
+
 
 function SigninScreen(props){
     return(

@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import  {  Route, Link } from 'react-router-dom';
-import data from './data';
+// import data from './data';
 import HomeScreen from './Screens/HomeScreen';
 import ProductScreen from './Screens/ProductScreen';
 import CartScreen from './Screens/CartScreen';

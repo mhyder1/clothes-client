@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
 import { Link } from 'react-router-dom';
-import data from '../data'
+// import data from '../data'
 
 import AppContext from '../AppContext'
 
@@ -9,7 +9,7 @@ function CartScreen (props){
     // const { cartItems } = cart;
     const context = useContext(AppContext)
     var itemList = []
-    context.cart.map(item=> {
+    context.cart.forEach(item=> {
         if(!(item.id in itemList))
         {
             var itemid = item.id
@@ -22,9 +22,9 @@ function CartScreen (props){
         }
     })
     
-    const productId = props.match.params.id;
+    // const productId = props.match.params.id;
     var finalAmount = 0
-    context.cart.map(item=> {
+    context.cart.forEach(item=> {
         finalAmount += item.price
     })
     const [total, setTotal] = useState(finalAmount)
