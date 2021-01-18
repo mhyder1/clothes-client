@@ -1,5 +1,5 @@
-export default {
-    products: [
+
+  const  products = [
         {
         id:'1,',
         name: 'Skirt and Blouse',
@@ -123,4 +123,6 @@ export default {
         description: ''
     },
 ]
-}
+
+
+export default products
