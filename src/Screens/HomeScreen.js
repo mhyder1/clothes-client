@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import products from '../data';
+import data from '../data';
 
 function HomeScreen(props){
   console.log(props)
 
   const {id} = props.match.params
-  //let products = products
+  let products = data.products
   if(id){
      products = products.filter(product=> product.category === id)
   }

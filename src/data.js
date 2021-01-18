@@ -124,5 +124,8 @@
     },
 ]
 
+const data = {
+    "products" : products
+}
 
-export default products
+export default data
