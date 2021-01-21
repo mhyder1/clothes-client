@@ -1,14 +1,23 @@
 import React, {useContext, useState} from 'react';
 import { Link } from 'react-router-dom';
-import data from '../data';
+//import data from '../data';
 import AppContext from '../AppContext'
 
 
 function ProductScreen(props){
     const context = useContext(AppContext)
     const [quantity, setQuantity] = useState(1)
-    const product = data.products.find(x=> x.id === props.match.params.id );
-    //this.setQuantity.bind(this)
+    var product 
+    const idToMatch =  props.match.params.id
+    //const product = context.products.find(x=> x.id === props.match.params.id );
+    context.products.forEach(element => {
+        var curr = element.id
+        if( curr == idToMatch)
+        {   
+            
+                product = element
+        }
+    });
 
     const handleSubmit = (e)=> {
         e.preventDefault()

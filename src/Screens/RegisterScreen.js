@@ -2,6 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function RegisterScreen(prop){
+
+    const handleSubmit = (e)=> {
+        e.preventDefault()
+       const user = { 
+            name: this.name,
+            email: this.email,
+            //pass
+        }
+       console.log(user.name)
+       //create user object and send this to write in the table in backend.
+    }
+
     return(
         <div className='form'>
             <form>
@@ -13,7 +25,7 @@ function RegisterScreen(prop){
                         <label htmlFor='name'>
                             Name
                         </label>
-                        <input type='name' id='name' name='name'></input>
+                        <input type='name' id='name'  name='name'></input>
                     </li>
                     <li>
                         <label htmlFor='email'>

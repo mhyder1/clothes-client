@@ -1,14 +1,15 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import { Link } from 'react-router-dom';
-import data from '../data';
+// import data from '../data';
+import AppContext from '../AppContext'
 
 function HomeScreen(props){
-  console.log(props)
+  const context = useContext(AppContext)
 
   const {id} = props.match.params
-  let products = data.products
+  let products = context.products
   if(id){
-     products = products.filter(product=> product.category === id)
+     products = context.products.filter(product=> product.category === id)
   }
    
   
@@ -16,10 +17,10 @@ function HomeScreen(props){
         <ul className='products'>
         {
          products.map(product => 
-      <li>
+      <li key = {product.id}>
         <div className='product'>
         <Link to={'/product/' + product.id}>
-        <img className ='product-image' src={product.image} alt='product'/>
+          <img className ='product-image' src={product.image} alt='product'/>
         </Link>
           
           <div className='product-name'>

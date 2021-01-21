@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import  {  Route, Link } from 'react-router-dom';
 // import data from './data';
 import HomeScreen from './Screens/HomeScreen';
@@ -7,12 +7,21 @@ import CartScreen from './Screens/CartScreen';
 import './App.css';
 import SigninScreen from './Screens/SigninScreen';
 import RegisterScreen from './Screens/RegisterScreen';
-import AppContext from './AppContext'
+import AppContext from './AppContext';
+import config from './config'
 
 
 
 function App() {
   const [cart, setCart] = useState([])
+
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    fetch(`${config.API_ENDPOINT}/products`)
+    .then(res => res.json())
+    .then(products => setProducts(products))
+  }, [])
 
   const openMenu = ()=> {
     document.querySelector('.sidebar').classList.add('open');
@@ -29,7 +38,8 @@ function App() {
 
   const value = {
     cart,
-    addToCart
+    addToCart,
+    products
   }
 
   return (
@@ -53,10 +63,10 @@ function App() {
         <h3>Shopping Categories</h3>
         <button className='sidebar-close-button' onClick={closeMenu}>X</button>
         <ul className='categories'>
-          <li><Link to='/category/Skirt and Blouse'>Skirt and Blouse</Link></li>
-          <li><Link to='/category/Gown'>Gown</Link></li>
-          <li><Link to='/category/Blouse'>Blouse</Link></li>
-          <li><Link to='/category/Skirt'>Skirt</Link></li>
+          <li key="category1"><Link to='/category/Skirt and Blouse'>Skirt and Blouse</Link></li>
+          <li key="category2"><Link to='/category/Gown'>Gown</Link></li>
+          <li key="category3"><Link to='/category/Blouse'>Blouse</Link></li>
+          <li key="category4"><Link to='/category/Skirt'>Skirt</Link></li>
         </ul>
       </aside>
      
