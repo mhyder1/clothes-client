@@ -1,13 +1,22 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 
 
 function SigninScreen(props){
-    // let users = context.users
+    const [email, setEmail] = useState('')
+    const [password, setPassword] =useState('')
+
+   const submitHandler = (e)=>{
+        e.preventDefault();
+        const sign = {
+            email: email,
+            password: password 
+        }
+   }
 
     return(
         <div className='form'>
-            <form>
+            <form onSubmit ={submitHandler}>
                 <ul>
                     <li>
                         <h2>Sign-In</h2>
@@ -17,13 +26,13 @@ function SigninScreen(props){
                         <label>
                             Email
                         </label>
-                        <input type='email' name='email' id='email'></input>
+                        <input type='email' name='email' id='email' onChange={(e) => setEmail(e.target.value)}></input>
                     </li>
                     <li>
                         <label>
                             Password
                         </label>
-                        <input typ='password' id='password' name='password'></input>
+                        <input typ='password' id='password' name='password' onChange={(e) => setPassword(e.target.value)}></input>
                     </li>
                     <li>
                         <button type='submit' className='button primary'>SignIn</button>
