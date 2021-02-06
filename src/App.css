@@ -8,9 +8,14 @@ html{
     height: 100vh;
     margin: 0;
   }
-  
+  /* fix */
   #root{
       height: 100%;
+      width: 100%;
+  }
+/* fix */
+  img {
+    width: 100%;
   }
 
   .grid-container{

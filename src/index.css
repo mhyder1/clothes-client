@@ -143,3 +143,11 @@ a:hover{
   top: 1.5rem;
 
   }
+
+/* added */
+@media screen and (max-width: 480px) {
+  .sidebar {
+    width: 25rem;
+    opacity: 0.95
+  }  
+}

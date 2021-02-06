@@ -1,40 +1,76 @@
 import React, {useContext, useState} from 'react';
 import { Link } from 'react-router-dom';
-//import data from '../data';
 import AppContext from '../AppContext'
-
+import TokenService from '../services/token-service'
+import config from "../config";
 
 function ProductScreen(props){
     const context = useContext(AppContext)
+
     const [quantity, setQuantity] = useState(1)
-    var product 
-    const idToMatch =  props.match.params.id
-    //const product = context.products.find(x=> x.id === props.match.params.id );
-    context.products.forEach(element => {
-        var curr = element.id
-        if( curr == idToMatch)
-        {   
-            
-                product = element
-        }
-    });
+    
+    const { id } =  props.match.params
+    const product = context.products.length ? context.products.find(product => product.id === parseInt(id) ) : {}
 
     const handleSubmit = (e)=> {
         e.preventDefault()
-       const item = { 
-            name: product.name,
-            size: product.size,
-            image: product.image,
-            quantity: quantity,
-            id: product.id,
-            price: product.price * quantity,
-            
+
+        
+        
+        if(TokenService.hasAuthToken()) {
+            const { user_id } = TokenService.readJwtToken()
+
+            fetch(`${config.API_ENDPOINT}/carts`,{
+                method: 'POST',
+                headers: {
+                    "content-type": "application/json",
+                  },
+                body: JSON.stringify({user_id, product_id: parseInt(id)})
+            })
+            .then(() => {
+
+                fetch(`${config.API_ENDPOINT}/carts/${user_id}`)
+                    .then((res) => res.json())
+                    .then((cart) => context.setCart(cart));
+
+                // const item = { 
+                //     name: product.name,
+                //     size: product.size,
+                //     image: product.image,
+                //     quantity: quantity,
+                //     id: product.id,
+                //     price: product.price * quantity,
+                // }
+
+                // context.addToCart(item)
+
+            })
+
+            // context.addToCart(item)
         }
-        context.addToCart(item)
+  
     }
 
     const setQty = (quantity) => {
         setQuantity(quantity);
+    }
+
+    const addToCarButton = () => {
+        if(TokenService.hasAuthToken()) {
+            return (
+                <button className="button" type="submit">
+                    Add to cart
+                </button>
+            )
+        } else {
+            return(
+            <Link to="/signin">   
+                <button className="button" type="submit">
+                    Please login to shop
+                </button>
+            </Link>
+            )
+        }
     }
     
     return(
@@ -42,6 +78,7 @@ function ProductScreen(props){
             <div className='back-to-result'>
                 <Link to='/'>Back to result</Link>
             </div>
+             {!!Object.keys(product).length &&
             <div className='details'>
                 <div className='detail-image'>
                     <img src={product.image} alt='product'></img>
@@ -88,14 +125,18 @@ function ProductScreen(props){
                             </select>
                         </li>
                         <li>
-                            <button className="button" type="submit">
+                            {/* <button className="button" type="submit">
                                 Add to cart
-                            </button>
+                            </button> */}
+                            {
+                                addToCarButton()
+                            }
                         </li>
                     </ul>
                     </form>
                 </div>
             </div>
+            }
             
         </div>
     )
